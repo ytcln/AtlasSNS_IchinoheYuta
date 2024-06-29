@@ -1,22 +1,97 @@
 @charset "utf-8";
-html{
-}
-body{
-}
+
+html {}
+
+body {}
+
 /* header */
-header{
-    background:#186AC9;
+header {
+    padding: 10px;
+    background: #186AC9;
+}
+
+h1 {
+    padding: 20px;
+}
+
+img {
+    size: 60px 70px;
+}
+
+p {
+    color: #f7ecf1
 }
 
 /* main content */
-#row{
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.side_user {
+    display: flex;
+    justify-content: center;
+}
+
+#row {
     display: flex;
     flex-flow: row wrap;
 }
-#container{
+
+#container {
+    height: 100%;
     flex: 0 0 80%;
+    border-right: 1px solid #727272;
 }
-#side-bar{
+
+.menu-btn .tag {
+    text-decoration: none;
+}
+
+#side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+/*アコーディオンメニュー*/
+
+.accordion {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.accordion-contents {
+    padding: 10px;
+    display: none;
+}
+
+/* 矢印 */
+.accordion-title {
+    position: relative;
+}
+
+.accordion-title::after {
+    content: "";
+    right: 40px;
+    position: absolute;
+    top: 3%;
+    width: 8px;
+    height: 8px;
+    border-top: solid 2px #fff;
+    transform: rotate(135deg);
+    /*最初の矢印は下向き*/
+    border-right: solid 2px #fff;
+}
+
+.accordion-title.open::after {
+    top: 45%;
+    transform: rotate(-45deg);
+    /*矢印を上向きに変える*/
+}
+
+/*常時開いたままにしないように設定*/
+.nav-open ul {
+    display: none;
 }

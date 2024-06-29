@@ -22,43 +22,52 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
+        <h1 class="logo"><a href="{{url('/top')}}">
+            <img src="images/atlas.png"></a>
+        </h1>
+       <div class=side_user>
+        <div id="accordion" class="accordion-container">
+                    <p>{{ Auth::user()->username}}さん<img src="images/icon1.png"></p>
+                    <div class="accordion accordion-title"></div>
                 <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
+
+                <div class="menu-list">
+                <div class="menu-btn"></div>
+                <ul class="menu">
+                    <li><a class="home" href="/top">Home</a></li>
+                    <li><a class="profile" href="/profile">プロフィール編集</a></li>
+                    <li><a class="logout" href="/logout">ログアウト
+                    </a></li>
                 </ul>
+                </div>
             </div>
         </div>
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ asset('js/script.js')}}"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-{!! Form::open(['url' => '/search']) !!}
+
 <!-- 検索窓　-->
 <div>
   <form action="{{ url('/users/search') }}" method="GET">
@@ -13,20 +13,21 @@
 
 <!-- 検索ワードの表示　-->
 @if (!empty($keyword))
-<p>検索ワード:{{ $keyword }}</p>
+<td>検索ワード:{{ $keyword }}</td>
+@else
+<td></td>
 @endif
-{!! Form::close() !!}
 
 <!-- //*保存されているレコードを一覧表示　*// -->
 <div class="container-list">
 
   <table class='table table-hover'>
-     @foreach ($users as $users)
+     @foreach ($users as $user)
      <!-- 自分以外のユーザーの表示　-->
-    @if (!($user->username == $users->username))
+    @if (!($user->username == $user->username))
     <tr>
-      <td>{{ $users->username }}</td>
-      <td><img src="{{ $users->images }}" alt="ユーザーアイコン"></td>
+      <td>{{ $user->username }}</td>
+      <td><img src="{{ $user->images }}" alt="ユーザーアイコン"></td>
     </tr>
     @endif
     @endforeach
@@ -52,7 +53,7 @@
           @if (auth()->user()->isFollowing($user->id))
           <li class="unfollow_btn">
             <button type="submit" class="btn btn-danger">
-              <a href="/user/{{$user->id}}/unfollow" class="btn-text">フォロー解除</a></button>
+              <a href="/user/{{$user->id}}/unfollow" class="btn-text">フォロー解除する</a></button>
           </li>
           @else
           <li class="follow_btn">

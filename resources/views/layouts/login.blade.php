@@ -34,10 +34,9 @@
                 <div class="menu-list">
                 <div class="menu-btn"></div>
                 <ul class="menu">
-                    <li><a class="home" href="/top">Home</a></li>
-                    <li><a class="profile" href="/profile">プロフィール編集</a></li>
-                    <li><a class="logout" href="/logout">ログアウト
-                    </a></li>
+                    <li><a href="/top">HOME</a></li>
+                    <li><a href="/profile">プロフィール編集</a></li>
+                    <li><a href="/logout">ログアウト</a></li>
                 </ul>
                 </div>
             </div>
@@ -53,12 +52,12 @@
                 <p>{{Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

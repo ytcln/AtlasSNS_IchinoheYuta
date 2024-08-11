@@ -36,11 +36,11 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('login');
-        //logoutからloginに変更
+        $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         if($request->isMethod('post')){
 
             $data=$request->only('mail','password');
@@ -52,7 +52,7 @@ class LoginController extends Controller
         }
         return view("auth.login");
     }
-    public function Logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
         return redirect()->route('login');

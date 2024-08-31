@@ -14,13 +14,6 @@ h1 {
     padding: 20px;
 }
 
-img {
-    size: 60px 70px;
-}
-
-p {
-    color: #f7ecf1
-}
 
 /* main content */
 #head {
@@ -53,6 +46,24 @@ p {
 #side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+.Trash {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.Trash:hover {
+    background-image: url('images/trash-h.png');
+}
+
+.btn {
+    background: #186AC9;
+    padding: 10px;
+    border: #000000 1px solid;
+    border-radius: 6px;
 }
 
 /*アコーディオンメニュー*/

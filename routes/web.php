@@ -65,9 +65,9 @@ Route::get('/users/search', 'UsersController@searching')-> name('posts.index');
 ///投稿用メソッド移動用ルート
 Route::post('/tweet', 'PostsController@tweet')->name('post.tweet');;
 
-//投稿内容更新
-Route::post('/update', 'PostsController@update');
-Route::get('/update', 'PostsController@update');
+//投稿内容編集
+Route::post('/post/update', 'PostsController@update');
+//Route::get('/update', 'PostsController@update');
 
 //投稿の一覧表示
 Route::get('/posts','PostsController@index');
@@ -87,7 +87,10 @@ Route::get('/post/{id}/delete', 'PostsController@delete');
 Route::get('/profile', 'UsersController@profile')->name('profile.index');
 
 //ログインユーザーのプロフィール更新
-Route::post('/update','UsersController@update')->name('profile.update');
+//Route::post('/update','UsersController@update')->name('profile.update');
+
+//プロフィール編集
+Route::post('/profile/update','UsersController@updateProfile');
 
 //フォローリスト
 Route::get('/follow-list', 'FollowsController@followList');
@@ -105,8 +108,17 @@ Route::get('/user/{id}/unfollow', 'FollowsController@unfollow');
 //フォロー機能
 Route::post('/users/{user}/follow', 'UsersController@follow')->name('follow');
 
+//フォロー解除機能
+Route::get('/users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+
 //フォロ-リストの表示
 Route::post('/FollowList','PostsController@view');
+
+Route::post('/FollowerList','PostsController@view');
+
+Route::get('users/{id}/profile', 'UsersController@show')->name('profile.show');
+
+//Route::get('/top','FollowsController@show');
 
 //ユーザー検索機能
 Route::get('/search', 'UsersController@search');

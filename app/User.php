@@ -31,12 +31,12 @@ class User extends Authenticatable
     //フォローしている数
     public function isFollowing(Int $user_id){
         return(boolean)$this->follows()->where
-        ('followed_id',$user_id)->first();
+        ('followed_id',$user_id)->first(['follows.id']);
     }
     //フォローされてる数
     public function isFollowed(Int $user_id){
         return(boolean)$this->followers()->where
-        ('following_id',$user_id)->first();
+        ('following_id',$user_id)->first(['follows.id']);
     }
     //フォロー機能の実装
     //フォロー数
@@ -52,9 +52,9 @@ class User extends Authenticatable
         'followed_id','following_id')->withTimestamps();
     }
     //フォロー解除
-    public function unfollow($user_id)
+    public function unfollow($id)
     {
-        return $this->follows()->detach($user_id);
+        return $this->follows()->detach($id);
     }
     //フォローする
     public function follow($id)

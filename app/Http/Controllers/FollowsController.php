@@ -20,16 +20,16 @@ class FollowsController extends Controller
 
 
     //フォロー・フォロワー数カウント
-public function following(){
-   $followings =Follow::where('following_id', Auth::id())->get();
-    return view('auth.login' , compact('followings'));
-}
+//public function following(){
+   //$followings =Follow::where('following_id', Auth::id())->get();
+    //return view('auth.login' , compact('followings'));
+//}
 //フォロー数＝following_idにある自分のidの数
 
-public function followed(){
-    $followers =Follow::where('followed_id', Auth::id())->get();
-    return view('auth.login' , compact('followers'));
-}
+//public function followed(){
+    //$followers =Follow::where('followed_id', Auth::id())->get();
+    //return view('auth.login' , compact('followers'));
+//}
 
 //フォローリスト表示機能
     public function followList(){
@@ -38,7 +38,6 @@ public function followed(){
         $posts =Post::with('user')->whereIn('user_id',$following_id)->latest()->get();
         return view('follows.followList', ['follows' => $follows,'posts' => $posts]);
 
-        //return view('follows.followList' ,['follow_user' =>$follow_user]);
     }
 
     //public function followpostlist(){
@@ -55,12 +54,13 @@ public function followed(){
         //return view('follows.followList', compact('posts'))->with(['images'=>$images]);
     //}
 
-//フォロワーリスト
+//フォロワーリスト表示機能
     public function followerList(){
-        $user = Auth::user();
-        $follow_user = $user -> follows() ->get();
-//followUsers→followsに変更
-        return view('follows.followerList' ,['follow_user'=>$follow_user]);
+        $follow_user = Auth::user()->follows()->get();
+        $following_id = Auth::user()->follows()->pluck('followed_id');
+        $posts =Post::with('user')->whereIn('user_id',$following_id)->latest()->get();
+
+        return view('follows.followerList' ,['follow_user' => $follow_user,'posts' => $posts]);
     }
 
 //フォロー数
@@ -70,7 +70,7 @@ public function followed(){
 
 //フォロワー数
     public function followers(){
-        return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
 }
 
 //フォロー機能
@@ -78,18 +78,18 @@ public function follow($id){
 
     $follower = Auth::user();
     $is_following = $follower->isFollowing($id);//フォローしているか
-    if($is_following) {//フォローしていなければフォローする
+    if(!$is_following) {//フォローしていなければフォローする
         $follower->follow($id);
     }
         return back();
 
 }
 //フォロー解除機能
-public function unfollow(User $user){
+public function unfollow($id){
     $follower = Auth::user();
-    $is_following =$follower->isFollowing($user->id);//フォローしているか
+    $is_following =$follower->isFollowing($id);//フォローしているか
     if($is_following) {//フォローしていればフォロー解除する}
-        $follower->unfollow($user->id);
+        $follower->unfollow($id);
     }
         return back();
 }
@@ -108,4 +108,20 @@ public function unfollow(User $user){
     //['follows' => $follows,'posts' => $posts]);
 //}
 
+public function show(User $user){
+    //$login_user = auth()->user();
+    //$is_following = $login_user->isFollowing($user->id);
+    //$is_followed = $login_user->isFollowed($user->id);
+    //$follow_count = $login_user->getFollowCount($user->id);
+    //$follower_count = $login_user->getFollowerCount($user->id);
+
+    return view('users,show',[
+        'user'           => $user,
+        'is_following'   => $is_following,
+        'is_followed'    => $is_followed,
+        'follow_count'   => $follow_count,
+        'follower_count' =>$follower_count
+
+    ]);
+}
 }

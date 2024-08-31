@@ -3,29 +3,43 @@
 @section('content')
 
 <!-- プロフィール編集画面 -->
-<img src="{{ asset('storage/user-images/'. Auth::user()->images) }}" class="icon-image">
+<div class="container">
+  <div class="update">
+    {!! Form::open(['url' => '/profile/update']) !!}
+    @csrf
+    {{ Form::hidden('id',Auth::user()->id) }}
+    <img class="update-icon" src="images/icon1.png">
+    <div class="update-form">
+      <div class="update-block"><!--ユーザー名-->
+        <label for="name">user name</label>
+        <input type="text" name="username" value="{{Auth::user()->username}}">
+      </div>
+      <div class="update-block"><!--メールアドレス-->
+        <label for="mail">mail address</label>
+        <input type="email" name="mail" value="{{Auth::user()->mail}}">
+      </div>
+      <div class="update-block"><!--パスワード-->
+        <label for="pass">password</label>
+        <input type="password" name="password" value="">
+      </div>
+      <div class="update-block"><!--パスワード確認用-->
+        <label for="name">password comfirm</label>
+        <input type="password" name="password_confirmation" value="">
+      </div>
+      <div class="update-block"><!--自己紹介文-->
+        <label for="name">bio</label>
+        <input type="text" name="bio" value="{{Auth::user()->bio}}">
+      </div>
+      <div class="update-block"><!--アイコン画像アップロード-->
+        <label for="name">icon image</label>
+        <input type="file" name="images">
+      </div>
+      <input type="submit" class="btn btn-danger">
+      {{Form::token()}}
+      {{!! Form::close() !!}}
+    </div>
+   </div>
+ </div>
 
-
-{!! Form::open(['url' => ['/profile/{id}/update'],'method' => 'post']) !!}
-{!! Form::hidden('id',$auth->id) !!}
-
-<p>{{ Form::label('username','user name')}}</p>
-<p>{{ Form::text('username',$auth->username,['class' =>'input'])}}</p>
-
-<p>{{ Form::label('mail','mail')}}</p>
-<p>{{ Form::text('mail',$auth->mail,['class' =>'input'])}}</p>
-
-<p>{{ Form::label('password','password')}}</p>
-<p>{{ Form::label('password_confirm','password confirm')}}</p>
-
-<p>{{ Form::label('bio','bio')}}</p>
-<p>{{ Form::text('bio',$auth->bio,['class' =>'input'])}}</p>
-
-<p>{{ Form::label('image','image')}}</p>
-<p>{{ Form::file('image',['class' =>'input' ,'id'=>'images'])}}</p>
-
-<p>{{ Form::submit('更新') }}</p>
-
-{{!!Form::close()!!}}
 
 @endsection

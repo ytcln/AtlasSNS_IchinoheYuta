@@ -7,11 +7,13 @@ use Auth;
 use App\User;
 use APP\Post;
 use Student;
+use Hash;
 
 class UsersController extends Controller
 {
     //認証済みのユーザー取得
-    public function profile(){
+    public function profile()
+    {
         $auth = Auth::user();
         return view('users.profile',['auth' => $auth]);
     }
@@ -33,30 +35,59 @@ class UsersController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    // public function update(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     //画像登録　アイコンはシンボリックリンク使用
+    //     $image = $request->file('images')->store('public/storage');
+
+    //     $user->update([
+    //         'username' => $request->input('username'),
+    //         'mail' => $request->input('mail'),
+    //         'password' => bcrypt($request->input('password')),
+    //         'bio' => $request->input('bio'),
+    //         'images' => basename($image),
+
+    //     ]);
+    //     //プロフィールバリデーション
+    //     $validator = Validator::make($request->all(),[
+    //         'username' => 'required|string|min:2|max:12',
+    //         'mail' => 'required|string|min:5|max:40|email',
+    //         'password' => 'alpha_num|required|string|min:8|max:20|confirmed',
+    //         'password_confirmation' => 'alpha_num|required|string|min:8|max:20|same:password',
+    //         'bio' => 'max:150',
+    //         'images' => 'image|mimes:jpg,png,bmp,gif,svg',
+    //     ]);
+    //     //$id = $request->input('id');
+    //     return redirect('/top');
+    // }
+
+    //プロフィール編集機能
+    public function updateProfile(Request $request)
     {
-        $user = Auth::user();
-        //画像登録　アイコンはシンボリックリンク使用
-        $image = $request->file('images')->store('public/storage');
+        $id = $request->input('id');
+        $username = $request->input('username');
+        $mail = $request->input('mail');
+        $password = $request->input('password');
+        $bio = $request->input('bio');
 
-        $user->update([
-            'username' => $request->input('username'),
-            'mail' => $request->input('mail'),
-            'password' => bcrypt($request->input('password')),
-            'bio' => $request->input('bio'),
-            'images' => basename($image),
+         //プロフィールバリデーション
+         $request->all([
+              'username' => 'required|string|min:2|max:12',
+              'mail' => 'required|string|min:5|max:40|email',
+              'password' => 'alpha_num|required|string|min:8|max:20|confirmed',
+              'password_confirmation' => 'alpha_num|required|string|min:8|max:20|same:password',
+              'bio' => 'max:150',
+              'images' => 'image|mimes:jpg,png,bmp,gif,svg',
+          ]);
 
+        User::where('id', $id)->update([
+            'username' => $username,
+            'mail' => $mail,
+            'password' => Hash::make($request->password),
+            'bio' => $bio,
         ]);
-        $validator = Validator::make($request->all(),[
-            'username' => 'required|string|min:2|max:12',
-            'mail' => 'required|string|min:5|max:40|email',
-            'password' => 'alpha_num|required|string|min:8|max:20|confirmed',
-            'password_confirmation' => 'alpha_num|required|string|min:8|max:20|same:password',
-            'bio' => 'max:150',
-            'images' => 'image|mimes:jpg,png,bmp,gif,svg',
-        ]);
-        //$id = $request->input('id');
-        return redirect('top');
+        return redirect('/top');
     }
 
     //検索結果を表示させる
@@ -67,8 +98,8 @@ class UsersController extends Controller
       return view('users.search')->with(['users' => $users, 'keyword' =>$keyword]);
     }
 //ユーザー検索の処理を実装する
-public function getIndex(Request $rq)
-{
+   public function getIndex(Request $rq)
+   {
     //キーワード受け取り
     $keyword = $rq->input('search');
 
@@ -101,7 +132,7 @@ if(!empty($keyword)){
     $query->where('username','LIKE', "%{$keyword}%");
     $users = $query->get();
     return view('/users/search',compact('users','user','keyword'));
-}
+   }
     else{
         $users = User::get();
         return view('/users/search',['users'=>$users],['user'=>$user],['keyword'=>$keyword]);

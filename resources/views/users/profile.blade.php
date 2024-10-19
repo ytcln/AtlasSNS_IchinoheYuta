@@ -5,10 +5,11 @@
 <!-- プロフィール編集画面 -->
 <div class="container">
   <div class="update">
-    {!! Form::open(['url' => '/profile/update']) !!}
-    @csrf
-    {{ Form::hidden('id',Auth::user()->id) }}
-    <img class="update-icon" src="images/icon1.png">
+
+  <form action="/profile/update" enctype="multipart/form-data" method="POST">
+      @csrf
+
+    <img class="update-icon" src="/images/icon1.png">
     <div class="update-form">
       <div class="update-block"><!--ユーザー名-->
         <label for="name">user name</label>
@@ -34,12 +35,23 @@
         <label for="name">icon image</label>
         <input type="file" name="images">
       </div>
-      <input type="submit" class="btn btn-danger">
-      {{Form::token()}}
-      {{!! Form::close() !!}}
+      <button type="submit" class="btn btn-danger">更新</button>
+      </form>
+
     </div>
    </div>
- </div>
+   </div>
+
+   <!-- バリデーションエラーメッセージ -->
+   @if($errors->any())
+   <div class="update_error">
+    <ul>
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+   </div>
+   @endif
 
 
 @endsection

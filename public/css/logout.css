@@ -1,10 +1,114 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     height: 100%;
-    background: #186AC9;
+    background: linear-gradient(to bottom, #186AC9, rgba(24, 108, 201, 0.6) 60%, #ffe700);
+
+}
+
+header {
+    color: white;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 250px;
+    height: 30px;
+}
+
+.red {
+    color: white;
+    background: red;
+    border: none;
+    width: 50%;
+    font-size: 20px;
+}
+
+.right {
+    text-align: right;
+}
+
+.top {
+    text-align: center;
+}
+
+.text {
+    color: white;
+    height: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center {
+    background-color: teal;
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+
+
+}
+
+.text1 {
+    color: white;
+    height: 10em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center1 {
+    background-color: teal;
+    border-radius: 10px;
+    margin: 0;
+
+}
+
+.under {
+    text-decoration: underline;
+}
+
+a {
+    color: white;
+}
+
+.center {
+    text-align: center;
+    padding: 100px;
+}
+
+.center2 {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 18px;
+}
+
+.center3 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.center4 {
+    text-align: center;
+}
+
+.center5 {
+    text-align: center;
+}
+
+
+.atlas {
+    width: 150px;
+}
+
+.atlas2 {
+    font-size: 4vw;
+    font-family: Tahoma;
+    font-weight: bold;
 }

@@ -4,33 +4,54 @@
 
 <div class="container">
 
-<p class="page-header"><img src="images/icon1.png"width="50"height="50"></p>
+<div class="container1">
+<p class="page-header">
+<img src="images/icon1.png"width="50"height="50" class="icon1">
+</p>
 {!! Form::open(['url' => 'post/create']) !!}
 
 <div class="form-group">
   {!! Form::input('text', 'newPost', null,  ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。']) !!}
 </div>
+</div>
 
-<button type="submit"></button><img src="images/post.png"width="100"height="100">
+<div class="post_btn">
+<button type="submit">
+<img src="images/post.png"width="40"height="40">
+</button>
+</div>
 
 {!! Form::close() !!}
 
+<hr class="plain">
 <table class="table table-hover">
 @foreach ($posts as $post)
 <tr>
+  <td class="icon">
+    <img src="{{ asset('storage/'.$post->user->images) }}" alt="">
+  </td>
   <td>{{ $post->user->user_id }}</td>
   <td>{{ $post->user->username }}</td><!-- 名前 -->
   <td>{{ $post->post }}</td><!-- 投稿内容 -->
   <td>{{ $post->created_at }}</td><!-- 登録日 -->
   <td>{{ $post->update_at }}</td><!-- 投稿時刻 -->
-  <td><img src="{{ asset('storage/'.$post->user->images) }}" alt="1"></td>
+
+
   <!-- 編集 -->
   @if(($post->user_id ==Auth::user()->id))
   <td><div class="new-contents">
-    <a class="js-modal-open" href="" post="{{$post->post }}" post_id="{{$post->id }}">あ
-    <!-- <img class="Update" src="./images/edit.png"  alt="編集"> -->
-</a></div>
+    <a class="js-modal-open" href="" post="{{$post->post }}" post_id="{{$post->id }}">
+    <img class="Update" src="./images/edit.png"  alt="編集">
+    </a></div>
   </td>
+
+  <!-- 削除 -->
+  <td><div class="new-contents">
+    <a class="delete_btn" href="/post/{{ $post->id }}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
+  <img class="Trash" src="./images/trash-h.png" alt="削除" >
+</a></div>
+</td>
+</tr>
 
 <!-- モーダル -->
 <div class="modal js-modal">
@@ -46,12 +67,6 @@
     </div>
 </div>
 
-<!-- 削除 -->
-  <td><a class="delete_btn" href="/post/{{ $post->id }}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-  <img class="Trash" src="./images/trash.png" alt="削除" >
-  </a>
-</td>
-</tr>
 @endif
 
 @endforeach

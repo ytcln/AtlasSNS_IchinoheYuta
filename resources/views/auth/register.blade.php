@@ -4,25 +4,39 @@
 <!-- 適切なURLを入力してください -->
 {!! Form::open(['url' => '/register']) !!}
 
-<h2>新規ユーザー登録</h2>
+<div class="text">
+  <div class="text-center">
+<p class="center2">新規ユーザー登録</p>
 
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+<p>{{ Form::label('ユーザー名') }}</p>
+<p>{{ Form::text('username',null,['class' => 'input']) }}</p>
 
-{{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+<p>{{ Form::label('メールアドレス') }}</p>
+<p>{{ Form::text('mail',null,['class' => 'input']) }}</p>
 
-{{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+<p>{{ Form::label('パスワード') }}</p>
+<p>{{ Form::text('password',null,['class' => 'input']) }}</p>
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+<p>{{ Form::label('パスワード確認') }}</p>
+<p>{{ Form::text('password_confirmation',null,['class' => 'input']) }}</p>
 
-{{ Form::submit('登録') }}
+<p class="right"><input type="submit" value=新規登録 class="red"></p>
 
-<p><a href="/login">ログイン画面へ戻る</a></p>
+<p class="under"><a href="/login">ログイン画面に戻る</a></p>
+</div>
+</div>
 
 {!! Form::close() !!}
 
+<!-- バリデーションエラーメッセージ -->
+   @if($errors->any())
+   <div class="update_error">
+    <ul>
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+   </div>
+   @endif
 
 @endsection

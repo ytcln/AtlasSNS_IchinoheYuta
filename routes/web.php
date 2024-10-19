@@ -94,7 +94,6 @@ Route::post('/profile/update','UsersController@updateProfile');
 
 //フォローリスト
 Route::get('/follow-list', 'FollowsController@followList');
-//Route::get('/follow-list', 'FollowsController@followpostlist');
 
 //フォロワーリスト
 Route::get('/follower-list', 'FollowsController@followerList');
@@ -105,20 +104,22 @@ Route::post('/user/{id}/follow', 'FollowsController@follow');
 //フォロー解除機能
 Route::get('/user/{id}/unfollow', 'FollowsController@unfollow');
 
-//フォロー機能
+//他ユーザーのフォロー機能
 Route::post('/users/{user}/follow', 'UsersController@follow')->name('follow');
 
-//フォロー解除機能
+//他ユーザーのフォロー解除機能
 Route::get('/users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
-//フォロ-リストの表示
-Route::post('/FollowList','PostsController@view');
-
-Route::post('/FollowerList','PostsController@view');
+//他ユーザーのプロフィール表示
+Route::get('/otherProfile/{id}', 'UsersController@otherProfile')->name('users.profile');
 
 Route::get('users/{id}/profile', 'UsersController@show')->name('profile.show');
 
 //Route::get('/top','FollowsController@show');
+
+Route::get('/profile/{user_id}', 'UsersController@profile')->name('profile');
+
+
 
 //ユーザー検索機能
 Route::get('/search', 'UsersController@search');

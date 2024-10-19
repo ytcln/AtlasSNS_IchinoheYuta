@@ -40,6 +40,15 @@ class FollowsController extends Controller
 
     }
 
+    //フォロワーリスト表示機能
+    public function followerList(){
+        $followers = Auth::user()->followers()->get();
+        $following_id = Auth::user()->followers()->pluck('followed_id');
+        $posts =Post::with('user')->whereIn('user_id',$following_id)->latest()->get();
+
+        return view('follows.followerList' ,['followers' => $followers,'posts' => $posts]);
+    }
+
     //public function followpostlist(){
         //$followpost =Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
 
@@ -54,14 +63,6 @@ class FollowsController extends Controller
         //return view('follows.followList', compact('posts'))->with(['images'=>$images]);
     //}
 
-//フォロワーリスト表示機能
-    public function followerList(){
-        $follow_user = Auth::user()->follows()->get();
-        $following_id = Auth::user()->follows()->pluck('followed_id');
-        $posts =Post::with('user')->whereIn('user_id',$following_id)->latest()->get();
-
-        return view('follows.followerList' ,['follow_user' => $follow_user,'posts' => $posts]);
-    }
 
 //フォロー数
     public function follows(){
@@ -86,8 +87,9 @@ public function follow($id){
 }
 //フォロー解除機能
 public function unfollow($id){
+
     $follower = Auth::user();
-    $is_following =$follower->isFollowing($id);//フォローしているか
+    $is_following = $follower->isFollowing($id);//フォローしているか
     if($is_following) {//フォローしていればフォロー解除する}
         $follower->unfollow($id);
     }

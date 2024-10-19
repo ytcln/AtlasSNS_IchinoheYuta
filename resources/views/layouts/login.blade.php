@@ -16,9 +16,6 @@
     <link rel="icon" href="画像URL" sizes="48x48" type="image/png" />
     <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="{{ asset('js/script.js')}}"></script>
-
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
@@ -27,11 +24,11 @@
     <header>
         <div id = "head">
         <h1 class="logo"><a href="{{url('/top')}}">
-            <img src="images/atlas.png"></a>
+        <img src="/images/atlas.png" class="top"></a>
         </h1>
        <div class=side_user>
         <div id="accordion" class="accordion-container">
-                    <p>{{ Auth::user()->username}}さん<img src="images/icon1.png"></p>
+                    <p class="btn1">{{ Auth::user()->username}}さん<img src="/images/icon1.png"></p>
                     <div class="accordion accordion-title"></div>
                 <div>
 
@@ -52,24 +49,31 @@
             @yield('content')
         </div >
         <div id="side-bar">
-            <div id="confirm">
+            <div id="confirm" class="confirm">
                 <p>{{Auth::user()->username}}さんの</p>
                 <div>
+                <div class="side">
                 <p>フォロー数</p>
                 <p>{{Auth::user()->follows()->count()}}名</p>
                 </div>
-                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
+                </div>
+                <p class="btn"><a href="/follow-list" class="btn1">フォローリスト</a></p>
                 <div>
+                <div class="side">
                 <p>フォロワー数</p>
                 <p>{{Auth::user()->followers()->count()}}名</p>
                 </div>
-                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                </div>
+                <p class="btn"><a href="/follower-list" class="btn1">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <hr class="hr1">
+            <p class="btn-u"><a href="/search" class="btn1">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ asset('js/script.js')}}"></script>
 </body>
 </html>

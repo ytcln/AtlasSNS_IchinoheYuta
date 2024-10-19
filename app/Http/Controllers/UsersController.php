@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\support\Facades\Auth;
 use App\User;
-use APP\Post;
+use App\Post;
 use Student;
 use Hash;
 
@@ -65,30 +65,55 @@ class UsersController extends Controller
     //プロフィール編集機能
     public function updateProfile(Request $request)
     {
+        //dd($request);
+
+         //プロフィールバリデーション
+         $request->validate([
+              'username' => 'required|string|min:2|max:12',
+              'mail' => 'required|string|email|min:5|max:40',
+              'password' => 'alpha_num|required|string|min:8|max:20|confirmed',
+              'bio' => 'max:150',
+              'images' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
+          ]);
+
+          //画像登録
+          $images = $request->file('images')->getclientOriginalName();
+          if($images != null){
+            $images->store('public/images');
+            DB::table('users')
+            ->where('id',$id)
+            ->update([
+                'images' => basename($images),
+            ]);
+          }
+
         $id = $request->input('id');
         $username = $request->input('username');
         $mail = $request->input('mail');
         $password = $request->input('password');
         $bio = $request->input('bio');
+        $images = $request->images->storeAs('public/images', $images);
 
-         //プロフィールバリデーション
-         $request->all([
-              'username' => 'required|string|min:2|max:12',
-              'mail' => 'required|string|min:5|max:40|email',
-              'password' => 'alpha_num|required|string|min:8|max:20|confirmed',
-              'password_confirmation' => 'alpha_num|required|string|min:8|max:20|same:password',
-              'bio' => 'max:150',
-              'images' => 'image|mimes:jpg,png,bmp,gif,svg',
-          ]);
-
-        User::where('id', $id)->update([
+            User::where('id', $id)->update([
             'username' => $username,
             'mail' => $mail,
             'password' => Hash::make($request->password),
             'bio' => $bio,
+            'images' => $images,
         ]);
+
         return redirect('/top');
     }
+
+    //他ユーザーのプロフィール
+    public function otherProfile($id){
+
+    $users = User::where('id',$id)->first();
+    $posts = Post::with('user')->where('user_id', $id)->get();
+
+    return  view('users.otherProfile',['id'=>$id])->with('users',$users)->with('posts',$posts);
+    }
+
 
     //検索結果を表示させる
     public function search(Request $request)
@@ -148,24 +173,26 @@ if(!empty($keyword)){
         return view('web.php',['users'=>$top]);
     }
 
-//フォロー機能
-    public function follow(User $user){
+//他ユーザーのフォロー機能
+    public function follow($id)
+    {
         $user = Auth::user();
         $follower = auth()->user();//フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if($is_following){ //もしフォローしていなければ
-        $follower->follow($user->id);//フォローする
+        $is_following = $follower->isFollowing($id);
+        if(!$is_following){ //もしフォローしていなければ
+              $follower->follow($id);//フォローする
         }
         return back();
     }
 
-//フォロー解除
-    public function unfollow(User $user){
+//他ユーザーのフォロー解除
+    public function unfollow($id)
+    {
         $user = Auth::user();
         $follower = auth()->user();//フォローしているのか
-        $is_following = $follower->isFollowing($user->id);
+        $is_following = $follower->isFollowing($id);
         if($is_following){//もしフォローしていれば
-            $follower->unfollow($user->id);//フォロー解除する
+            $follower->unfollow($id);//フォロー解除する
         }
         return back();
     }

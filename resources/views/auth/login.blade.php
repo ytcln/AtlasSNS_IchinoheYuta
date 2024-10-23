@@ -8,10 +8,13 @@
   <div class="text-center">
 <p class="center2">AtlasSNSへようこそ</p>
 
-<p>{{ Form::label('メールアドレス') }}</p>
-<p class="top">{{ Form::text('mail',null,['class' => 'input']) }}</p>
-<p>{{ Form::label('パスワード') }}</p>
+<div class="home">
+<p class>{{ Form::label('メールアドレス') }}</p>
+<p class="top">{{ Form::text('mail',null,['class' => 'input']) }}</p></div>
+<div class="home">
+<p class></p>{{ Form::label('パスワード') }}</p>
 <p class="top">{{ Form::password('password',['class' => 'input']) }}</p>
+</div>
 
 <p class="right"><input type="submit" value=ログイン class="red"></p>
 

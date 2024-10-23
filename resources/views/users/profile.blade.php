@@ -11,6 +11,7 @@
 
     <img class="update-icon" src="/images/icon1.png">
     <div class="update-form">
+      <input type="hidden" name="id" value="{{Auth::user()->id}}">
       <div class="update-block"><!--ユーザー名-->
         <label for="name">user name</label>
         <input type="text" name="username" value="{{Auth::user()->username}}">

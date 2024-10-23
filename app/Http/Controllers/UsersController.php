@@ -8,6 +8,7 @@ use App\User;
 use App\Post;
 use Student;
 use Hash;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -76,10 +77,14 @@ class UsersController extends Controller
               'images' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
           ]);
 
+          $id = $request->input('id');
+          //dd($id);
+
           //画像登録
-          $images = $request->file('images')->getclientOriginalName();
-          if($images != null){
-            $images->store('public/images');
+
+          if($request->file('images') != null){
+            $images = $request->file('images')->getClientOriginalName();
+            $icon = $request->file('images')->storeAs('public/images', $images);
             DB::table('users')
             ->where('id',$id)
             ->update([
@@ -87,19 +92,16 @@ class UsersController extends Controller
             ]);
           }
 
-        $id = $request->input('id');
         $username = $request->input('username');
         $mail = $request->input('mail');
         $password = $request->input('password');
         $bio = $request->input('bio');
-        $images = $request->images->storeAs('public/images', $images);
 
             User::where('id', $id)->update([
             'username' => $username,
             'mail' => $mail,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($password),
             'bio' => $bio,
-            'images' => $images,
         ]);
 
         return redirect('/top');

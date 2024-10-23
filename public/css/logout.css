@@ -31,10 +31,17 @@ input {
 
 .right {
     text-align: right;
+    margin-bottom: 30px;
+    margin-right: 24px;
 }
 
 .top {
-    text-align: center;
+    margin-bottom: 25px;
+}
+
+.home {
+    max-inline-size: max-content;
+    margin-inline: auto;
 }
 
 .text {
@@ -49,8 +56,23 @@ input {
     background-color: teal;
     border-radius: 10px;
     width: 300px;
-    height: 300px;
+    height: 330px;
+}
 
+.text-center1 {
+    background-color: teal;
+    border-radius: 10px;
+    width: 300px;
+    height: 470px;
+    margin-top: 130px;
+
+}
+
+.text-center2 {
+    background-color: teal;
+    border-radius: 10px;
+    width: 300px;
+    height: 250px;
 
 }
 
@@ -62,15 +84,9 @@ input {
     align-items: center;
 }
 
-.text-center1 {
-    background-color: teal;
-    border-radius: 10px;
-    margin: 0;
-
-}
-
 .under {
     text-decoration: underline;
+    text-align: center;
 }
 
 a {
@@ -92,6 +108,7 @@ a {
 .center3 {
     text-align: center;
     font-weight: bold;
+    padding-top: 30px;
 }
 
 .center4 {
@@ -102,13 +119,24 @@ a {
     text-align: center;
 }
 
+.center6 {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 50px;
+}
+
+.center7 {
+    text-align: center;
+    padding-bottom: 30px;
+}
 
 .atlas {
     width: 150px;
 }
 
 .atlas2 {
-    font-size: 4vw;
+    font-size: 35px;
     font-family: Tahoma;
     font-weight: bold;
+    margin-bottom: 30px;
 }

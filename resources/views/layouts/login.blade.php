@@ -23,22 +23,27 @@
 <body>
     <header>
         <div id = "head">
-        <h1 class="logo"><a href="{{url('/top')}}">
-        <img src="/images/atlas.png" class="top"></a>
-        </h1>
-       <div class=side_user>
-        <div id="accordion" class="accordion-container">
-                    <p class="btn1">{{ Auth::user()->username}}さん<img src="/images/icon1.png"></p>
-                    <div class="accordion accordion-title"></div>
-                <div>
+            <h1 class="logo"><a href="{{url('/top')}}">
+                <img src="/images/atlas.png" class="top"></a>
+            </h1>
+            <div class=side_user>
+                <div id="accordion" class="accordion-container">
+                    <p class="btn1">{{ Auth::user()->username}}さん
+                      <img src="/images/icon1.png"></p>
+                    <div class="accordion accordion-title">
+                    </div>
+                    <div>
 
-                <div class="menu-list">
-                <div class="menu-btn"></div>
-                <ul class="menu">
-                    <li><a href="/top">HOME</a></li>
-                    <li><a href="/profile">プロフィール編集</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
+                        <div class="menu-list">
+                            <div class="menu-btn"></div>
+                                <ul class="menu">
+                                    <li><a href="/top">HOME</a></li>
+                                    <li><a href="/profile">プロフィール編集</a></li>
+                                    <li><a href="/logout">ログアウト</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,24 +52,26 @@
     <div id="row">
         <div id="container">
             @yield('content')
-        </div >
+        </div>
         <div id="side-bar">
             <div id="confirm" class="confirm">
-                <p>{{Auth::user()->username}}さんの</p>
+                <p class="side1">{{Auth::user()->username}}さんの</p>
                 <div>
-                <div class="side">
-                <p>フォロー数</p>
-                <p>{{Auth::user()->follows()->count()}}名</p>
+                    <div class="side">
+                    <p>フォロー数</p>
+                    <p>{{Auth::user()->follows()->count()}}名</p>
+                    </div>
                 </div>
-                </div>
-                <p class="btn"><a href="/follow-list" class="btn1">フォローリスト</a></p>
+                <p class="btn"><a href="/follow-list" class="btn1">フォローリスト</a>
+                </p>
                 <div>
-                <div class="side">
-                <p>フォロワー数</p>
-                <p>{{Auth::user()->followers()->count()}}名</p>
+                    <div class="side">
+                    <p>フォロワー数</p>
+                    <p>{{Auth::user()->followers()->count()}}名</p>
+                    </div>
                 </div>
-                </div>
-                <p class="btn"><a href="/follower-list" class="btn1">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list" class="btn1">フォロワーリスト</a>
+                </p>
             </div>
             <hr class="hr1">
             <p class="btn-u"><a href="/search" class="btn1">ユーザー検索</a></p>

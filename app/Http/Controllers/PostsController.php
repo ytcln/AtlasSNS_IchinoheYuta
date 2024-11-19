@@ -40,7 +40,7 @@ class PostsController extends Controller
   {
    //$id = Auth::id();
    $request->validate([
-    'newPost' => 'required|unique:posts,post|min:1|max:150',
+    'newPost' => 'required|min:1|max:150',
    ]);
    $user_id =Auth::id();
    $post = $request->input('newPost');

@@ -28,22 +28,20 @@
             </h1>
             <div class=side_user>
                 <div id="accordion" class="accordion-container">
-                    <p class="btn1">{{ Auth::user()->username}}さん
-                      <img src="/images/icon1.png"></p>
+                    <p class="btn-menu">{{ Auth::user()->username}} さん</p>
                     <div class="accordion accordion-title">
+                        <img src="{{ asset('storage/'.Auth::user()->images) }}"width="50"height="50"class="accordion-image">
                     </div>
-                    <div>
 
                         <div class="menu-list">
-                            <div class="menu-btn"></div>
+                            <div class="menu-btn">
                                 <ul class="menu">
-                                    <li><a href="/top">HOME</a></li>
-                                    <li><a href="/profile">プロフィール編集</a></li>
-                                    <li><a href="/logout">ログアウト</a></li>
+                                    <li class="menu-top"><a href="/top" class="menu-hover">HOME</a></li>
+                                    <li class="menu-top"><a href="/profile"class="menu-hover">プロフィール編集</a></li>
+                                    <li class="menu-top"><a href="/logout"class="menu-hover">ログアウト</a></li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +60,7 @@
                     <p>{{Auth::user()->follows()->count()}}名</p>
                     </div>
                 </div>
-                <p class="btn"><a href="/follow-list" class="btn1">フォローリスト</a>
+                <p class="btn-side"><a href="/follow-list" class="btn1">フォローリスト</a>
                 </p>
                 <div>
                     <div class="side">
@@ -70,7 +68,7 @@
                     <p>{{Auth::user()->followers()->count()}}名</p>
                     </div>
                 </div>
-                <p class="btn"><a href="/follower-list" class="btn1">フォロワーリスト</a>
+                <p class="btn-side"><a href="/follower-list" class="btn1">フォロワーリスト</a>
                 </p>
             </div>
             <hr class="hr1">

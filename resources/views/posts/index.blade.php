@@ -6,18 +6,18 @@
 
   <div class="container1">
     <p class="page-header">
-    <img src="{{ asset('storage/'.$user->images) }}"width="50"height="50" class="icon1">
+      <img src="{{ asset('storage/'.$user->images) }}"width="50"height="50" class="icon1">
     </p>
-    {!! Form::open(['url' => 'post/create']) !!}
+    {!! Form::open(['url' => 'post/create','class' =>'form-post']) !!}
 
     <div class="form-group">
-      {!! Form::input('text', 'newPost', null,  ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。']) !!}
+      {!! Form::textarea('newPost', null,  ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。']) !!}
     </div>
   </div>
 
   <div class="post_btn">
-    <button type="submit">
-    <img src="images/post.png"width="40"height="40">
+    <button type="submit"class="post">
+      <img src="images/post.png"width="40"height="40">
     </button>
   </div>
 </div>
@@ -27,52 +27,54 @@
 <hr class="plain">
 <table class="table table-hover">
   @foreach ($posts as $post)
-  <tr>
-    <td class="icon">
-      <img src="{{ asset('storage/'.$post->user->images) }}"width="50"height="50" class="icon2">
-    </td>
-    <td>{{ $post->user->user_id }}</td>
-    <td>{{ $post->user->username }}</td><!-- 名前 -->
-    <td>{{ $post->post }}</td><!-- 投稿内容 -->
-    <td>{{ $post->created_at }}</td><!-- 登録日 -->
-    <td>{{ $post->update_at }}</td><!-- 投稿時刻 -->
+  <ul>
+    <li class="post-block">
+      <div class="post-line">
+        <img src="{{ asset('storage/'.$post->user->images) }}"width="50"height="50" class="icon2">
 
+        <div class="post-index">
+            <div class="post-top">
+                <div>{{ $post->user->username }}</div><!-- 名前 -->
+                <div>{{ substr($post->created_at,0,16) }}</div><!-- 登録日 -->
+            </div>
+            <div class="post-last">
+                <div>{!! nl2br(e($post->post)) !!}</div><!-- 投稿内容 -->
 
-    <!-- 編集 -->
-    @if(($post->user_id ==Auth::user()->id))
-    <td><div class="new-contents">
-      <a class="js-modal-open" href="" post="{{$post->post }}" post_id="{{$post->id }}">
-      <img class="Update" src="./images/edit.png"  alt="編集">
-      </a></div>
-    </td>
+                <!-- 編集 -->
+                <div class="post-btn">
+                  @if(($post->user_id ==Auth::user()->id))
+                    <a class="js-modal-open" href="" post="{{$post->post }}" post_id="{{$post->id }}">
+                    <img class="Update" src="./images/edit.png"  alt="編集">
+                    </a>
 
-    <!-- 削除 -->
-    <td><div class="new-contents">
-      <a class="delete_btn" href="/post/{{ $post->id }}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-    <img class="Trash" src="./images/trash-h.png" alt="削除" >
-    </a></div>
-    </td>
-  </tr>
+                  <!-- 削除 -->
+                    <a class="delete_btn" href="/post/{{ $post->id }}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
+                    <img class="Trash" src="./images/trash.png" alt="toggle">
+                    </a>
+                    @endif
+                </div>
+            </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 
+  @endforeach
 
   <!-- モーダル -->
   <div class="modal js-modal">
     <div class="modal_bg js-modal-close"></div>
-      <div class="modal_content">
-        <form action="/post/update" method="POST">
-            <textarea name="upPost" class="modal_post"></textarea>
-            <input type="hidden" name="id" class="modal_id" value="">
-          <button type="submit"><img src="images/edit.png" width="30" height="30"></button>
-          <a class="js-modal-close" href="">閉じる</a>
-          {{ csrf_field() }}
-        </form>
-      </div>
+    <div class="modal_content">
+      <form action="/post/update" method="POST">
+          <textarea name="upPost" class="modal_post"></textarea>
+          <input type="hidden" name="id" class="modal_id" value="">
+        <button type="submit"class="edit"><img src="images/edit.png" width="30" height="30"></button>
+        <a class="js-modal-close" href=""></a>
+        {{ csrf_field() }}
+      </form>
     </div>
   </div>
 
-  @endif
 
-  @endforeach
 </table>
-
 @endsection

@@ -75,7 +75,12 @@ class UsersController extends Controller
               'password' => 'alpha_num|required|string|min:8|max:20|confirmed',
               'bio' => 'max:150',
               'images' => 'nullable|image|mimes:jpg,png,bmp,gif,svg',
-          ]);
+          ],[
+                'username.required' => 'ユーザー名を入力してください',
+                'mail.required' => 'メールを入力してください',
+                'password.required' => '英数字8文字から20文字までです',
+                'bio' => '150文字以内です'
+            ]);
 
           $id = $request->input('id');
           //dd($id);

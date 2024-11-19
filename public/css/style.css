@@ -6,7 +6,7 @@ body {}
 
 /* header */
 header {
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     background: #186AC9;
 }
 
@@ -40,25 +40,45 @@ li {
 
 .btn {
     background: #186AC9;
+    padding: 10px;
+    border-radius: 6px;
+    width: 130px;
+    text-align: center;
+}
+
+.btn-side {
+    background: #186AC9;
     padding: 5px;
     border-radius: 6px;
     width: 130px;
     margin-left: 120px;
     text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
 }
 
 .btn1 {
     color: white;
 }
 
+.btn-menu {
+    color: white;
+    margin-top: 30px;
+    font-size: large;
+}
+
 .side {
     display: flex;
     justify-content: space-around;
+    padding-right: 90px;
+    padding-bottom: 10px;
 }
 
 .side1 {
     padding-left: 20px;
     padding-top: 20px;
+    padding-bottom: 10px;
 }
 
 .btn-u {
@@ -69,7 +89,41 @@ li {
     width: 130px;
     margin-left: 60px;
     margin-top: 30px;
+}
 
+.menu-top {
+    border: solid 1px navy;
+    width: 285px;
+    text-align: center;
+    height: 85px;
+    line-height: 85px;
+    font-size: 25px;
+}
+
+.menu-top:hover {
+    background-color: navy;
+}
+
+.accordion-container {
+    display: flex;
+    margin-right: 20px;
+}
+
+.accordion-image {
+    margin-left: 30px;
+}
+
+.menu-list {
+    position: absolute;
+    top: 80px;
+    padding: 0px;
+    right: 0px;
+    background-color: white;
+
+}
+
+.menu-hover {
+    color: white
 }
 
 /* main content */
@@ -80,14 +134,9 @@ li {
     position: relative;
 }
 
-.side_user {
-    display: flex;
-    justify-content: center;
-}
 
 #row {
     display: flex;
-    flex-flow: row wrap;
 }
 
 #container {
@@ -98,7 +147,16 @@ li {
 
 .container1 {
     display: flex;
-    align-items: center;
+    height: 110px;
+}
+
+.form-control {
+    border: none;
+    width: 250px;
+    font-size: larger;
+    padding-left: 20px;
+    margin-top: 50px;
+    height: 50px;
 }
 
 .menu-btn .tag {
@@ -106,75 +164,17 @@ li {
 }
 
 
-.Trash {
-    width: 30px;
-    height: auto;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.Trash:hover {
-    background-color: #fff;
-}
-
 .Update {
     width: 40px;
     height: 40px;
+    margin-right: 10px;
 }
 
-.new-contents {
-    justify-content: space-between;
-}
-
-.follow_icon {
-    display: flex;
-}
-
-.follower_icon {
-    display: flex;
-}
-
-.side1 {
-    display: flex;
-}
-
-.plain {
-    background-color: #eee;
-    border: none;
-    height: 3px;
-}
-
-.side2 {
-    text-align: right;
-}
-
-.side3 {
-    display: flex;
-}
-
-
-.form-control {
-    border: none;
-    width: 250px;
-    font-size: medium;
-    padding-left: 20px;
-    padding-top: 30px;
-}
-
-.icon1 {
-    padding-top: 30px;
-    padding-left: 80px;
-}
-
-.icon2 {
-    margin-left: 120px;
-}
 
 /*アコーディオンメニュー*/
 
 .accordion {
     padding: 10px;
-    font-weight: bold;
 }
 
 .accordion-contents {
@@ -185,14 +185,14 @@ li {
 
 /* 矢印 */
 .accordion-title {
-    position: relative;
+    display: flex;
+    margin-left: 20px;
 }
 
 .accordion-title::after {
     content: "";
-    right: 40px;
     position: absolute;
-    top: 3%;
+    top: 45%;
     width: 8px;
     height: 8px;
     border-top: solid 2px #fff;
@@ -225,14 +225,14 @@ li {
     width: 100%;
 }
 
-.modal__bg {
-    background: rgba(0, 0, 0, 0.8);
+.modal_bg {
+    background: rgba(0, 0, 0, 0.4);
     height: 100vh;
     position: absolute;
     width: 100%;
 }
 
-.modal__content {
+.modal_content {
     background: #fff;
     left: 50%;
     padding: 40px;
@@ -241,49 +241,26 @@ li {
     transform: translate(-50%, -50%);
     width: 60%;
     text-align: center;
+    border-radius: 10px;
 }
 
-.delete_btn {
-    position: relative;
+
+.modal_post {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.modal_content .edit {
+    background-color: transparent;
+    border: none;
 }
 
 .delete_btn img {
-    position: relative;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    display: block;
-    width: 40px;
     height: 40px;
     border-radius: 5px;
-
-}
-
-.delete_btn:hover img:nth-of-type(2) {
-    opacity: 0;
-}
-
-
-.post_btn {
-    text-align: right;
-    margin-bottom: 20px;
-    margin-right: 100px;
-}
-
-.post_btn img {
-    border-radius: 3px;
-}
-
-.modal_content {
-    text-align: center;
-    position: relative;
-}
-
-.modal_post {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
 }
 
 /* 検索ページ */
@@ -303,18 +280,123 @@ li {
     color: white;
 }
 
+.btn-success {
+    background-color: rgba(255, 0, 0, 0);
+    width: 60px;
+    border: none;
+    margin-left: 10px;
+}
+
 .search {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-left: 300px;
+    margin-right: 250px;
 }
 
 .search1 {
     display: flex;
 }
 
+.search2 {
+    display: flex;
+}
+
+
 .user {
-    width: 40px;
+    width: 46px;
+    height: 46px;
+    border-radius: 5px;
+}
+
+.holder {
+    width: 300px;
     height: 40px;
+    margin-left: 60px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: larger;
+}
+
+
+.center_user_content {
+    font-size: larger;
+}
+
+.search-word {
+    font-size: 23px;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+
+/* フォロー・フォロワーリスト */
+
+.follow_line {
+    display: flex;
+    border-bottom: 7px solid #d3d3d3;
+    padding-bottom: 30px;
+    padding-left: 80px;
+    padding-top: 30px;
+}
+
+
+.follow_icon {
+    display: flex;
+}
+
+.follower_icon {
+    display: flex;
+}
+
+.post-content {
+    display: flex;
+    margin: 20px 20px 25px 100px;
+}
+
+
+.plain {
+    background-color: #d3d3d3;
+    height: 3px;
+    border: 2px solid #d3d3d3;
+}
+
+.plain1 {
+    background-color: #d3d3d3;
+    height: 3px;
+    border: 2px solid #d3d3d3;
+    margin-bottom: 40px;
+}
+
+.icon1 {
+    padding-top: 30px;
+    padding-left: 80px;
+}
+
+.list {
+    font-size: x-large;
+    margin-right: 50px;
+    letter-spacing: -3px;
+}
+
+.icon-space {
+    margin-right: 10px;
+}
+
+.follow-lines {
+    width: 100%;
+    margin-left: 30px;
+}
+
+.follow-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.follow-post {
+    border-bottom: 1px solid #a9a9a9;
 }
 
 /* 他のユーザープロフィール */
@@ -322,12 +404,12 @@ li {
 .btn-other {
     background: red;
     border: none;
-    margin-bottom: 10px;
+    height: 40px;
 }
 
 .un_follow_btn {
     text-align: right;
-    padding: 10px;
+    padding-right: 10px;
 }
 
 .info1 {
@@ -335,7 +417,163 @@ li {
     padding: 10px;
 }
 
-.block {
+.icon-image {
+    margin-top: 40px;
+    margin-left: 100px;
+}
+
+.icon-image1 {
+    margin-left: 20px;
+}
+
+.other-post {
+    margin-left: 170px;
+    position: relative;
+    bottom: 50px;
+}
+
+.other-font {
+    font-size: 22px;
+    word-spacing: 3em;
+    margin-bottom: 30px;
+}
+
+.other-font1 {
+    font-size: 22px;
+    word-spacing: 3em;
+}
+
+.other-line {
+    border-bottom: 7px solid #d3d3d3;
+}
+
+
+
+/* 投稿機能 */
+
+.post {
+    border: none;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.post_btn {
+    text-align: right;
+    margin-bottom: 20px;
+    margin-right: 150px;
+
+}
+
+.post_btn img {
+    border-radius: 3px;
+}
+
+
+.post-line {
     display: flex;
-    flex-direction: column;
+    margin: 20px 20px 20px 100px;
+}
+
+.post-index {
+    width: 100%;
+    margin-left: 30px;
+}
+
+.post-top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.post-last {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.post-block {
+    border-bottom: 1px solid #a9a9a9;
+}
+
+.post-btn {
+    display: flex;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.form-post {
+    width: 65%;
+}
+
+/* プロフィール編集 */
+
+.update-block {
+    width: fit-content;
+    margin-left: auto;
+    margin-bottom: 40px;
+}
+
+.update-line {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.update-icon {
+    margin-right: 30px;
+}
+
+label {
+    display: inline-block;
+    width: 200px;
+    font-size: larger;
+}
+
+.update-size {
+    width: 350px;
+    height: 35px;
+    background-color: #f5f5f5;
+    border: 1px solid #808080;
+}
+
+.update-size1 {
+    width: 354px;
+    height: 70px;
+    background-color: #f5f5f5;
+    border: 1px solid #808080;
+    display: none;
+}
+
+.btn-danger1 {
+    background: red;
+    border: none;
+    color: #fff;
+    font-size: large;
+    width: 150px;
+    display: block;
+    margin: auto;
+}
+
+.file-choice {
+    background-color: #f3f3f3;
+    cursor: pointer;
+    border: 1px solid #808080;
+    width: 354px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    color: #808080;
+}
+
+.user-images {
+    vertical-align: top;
+}
+
+.edit-form {
+    font-size: 10px;
+    display: block;
+    margin-left: 210px;
+    color: red;
 }

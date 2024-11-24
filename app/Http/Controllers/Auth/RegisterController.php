@@ -49,9 +49,9 @@ class RegisterController extends Controller
                 'mail'=>'required|email|min:5|max:40|unique:users,mail',
                 'password'=>'required|alpha_num|min:8|max:20|confirmed',
             ],[
-                'username.required' => 'ユーザー名を入力してください',
-                'mail.required' => 'メールを入力してください',
-                'password.required' => '英数字8文字から20文字までです',
+                'username.required' => 'ユーザー名は、２文字以上にしてください',
+                'mail.required' => 'メールアドレスは５文字以上にしてください',
+                'password.required' => 'パスワードは英数字8文字から20文字までです',
             ]);
 
             $username = $request->input('username');

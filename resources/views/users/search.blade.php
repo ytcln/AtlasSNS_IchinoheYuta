@@ -22,22 +22,6 @@
   @endif
 </div>
 
-<!-- //*保存されているレコードを一覧表示　*// -->
-<div class="container-list">
-
-  <table class='table table-hover'>
-     @foreach ($users as $user)
-     <!-- 自分以外のユーザーの表示　-->
-    @if (!($user->username == $user->username))
-    <tr>
-      <td>{{ $user->username }}</td>
-      <td><img src="{{ $user->images }}" alt="ユーザーアイコン"></td>
-    </tr>
-    @endif
-    @endforeach
-   </table>
-
-  </div>
 
 <!-- 登録ユーザー表示 -->
 <hr class="plain1">
@@ -47,6 +31,7 @@
       <!-- ユーザー情報ひとまとめ -->
       <div class="user_contents">
         @foreach ($users as $user)
+        @if (!(auth()->user()->username == $user->username))
         <ul>
           <!--登録者アイコン -->
           <div class="search">
@@ -71,6 +56,7 @@
           </div>
           @endif
         </ul>
+        @endif
         @endforeach
       </div>
     </li>

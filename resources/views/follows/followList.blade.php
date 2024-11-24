@@ -11,7 +11,7 @@
             <li>
                 <div class="follow_icon">
                     <a href="/otherProfile/{{$follow->id}}">
-                    <img src="{{ asset('storage/'.$follow->images) }}" alt="フォローアイコン"class="icon-space"width="50"height="50">
+                        <img src="{{ asset('storage/images/'.$follow->images) }}" alt="フォローアイコン"class="icon-space"width="50"height="50">
                     </a>
                 </div>
             </li>
@@ -26,7 +26,9 @@
 <li class="follow-post">
     <figure class="post_icon"></figure>
     <div class="post-content">
-        <img src="{{ asset('storage/'.$post->user->images) }}"width="50"height="50">
+        <a href="/otherProfile/{{$post->user_id}}">
+            <img src="{{ asset('storage/images/'.$post->user->images) }}"width="50"height="50">
+        </a>
 
         <div class="follow-lines">
             <div class="follow-content">

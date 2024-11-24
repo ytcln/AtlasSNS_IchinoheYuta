@@ -29,6 +29,14 @@ input {
     font-size: 20px;
 }
 
+.red1 {
+    color: white;
+    background: red;
+    border: none;
+    width: 50%;
+    font-size: 15px;
+}
+
 .right {
     text-align: right;
     margin-bottom: 30px;
@@ -36,7 +44,7 @@ input {
 }
 
 .top {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .home {
@@ -65,7 +73,6 @@ input {
     width: 300px;
     height: 470px;
     margin-top: 130px;
-
 }
 
 .text-center2 {
@@ -145,4 +152,5 @@ a {
     font-size: 11px;
     color: red;
     font-weight: bold;
+    display: block;
 }

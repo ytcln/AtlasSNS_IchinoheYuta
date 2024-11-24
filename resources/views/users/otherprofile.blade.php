@@ -4,7 +4,7 @@
 
 <!-- プロフィール編集画面 -->
 
-<img src="{{ asset('storage/'.$users->images) }}" class="icon-image"width="50"height="50">
+<img src="{{ asset('storage/images/'.$users->images) }}" class="icon-image"width="50"height="50">
 
 <div>
   <div class="other-line">
@@ -34,7 +34,7 @@
 
 <li class="follow-post">
       <div class="post-content">
-          <img src="{{ asset('storage/'.$users->images) }}" class="icon-image1"width="50"height="50">
+          <img src="{{ asset('storage/images/'.$users->images) }}" class="icon-image1"width="50"height="50">
 
           <div class="follow-lines">
             <div class="follow-content">

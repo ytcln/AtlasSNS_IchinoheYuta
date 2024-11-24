@@ -6,12 +6,17 @@
 
   <div class="container1">
     <p class="page-header">
-      <img src="{{ asset('storage/'.$user->images) }}"width="50"height="50" class="icon1">
+      <img src="{{ asset('storage/images/'.$user->images) }}"width="50"height="50" class="icon1">
     </p>
     {!! Form::open(['url' => 'post/create','class' =>'form-post']) !!}
 
     <div class="form-group">
       {!! Form::textarea('newPost', null,  ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください。']) !!}
+      @if ($errors->has('upPost'))
+                <span class="post-form">
+                  {{$errors->first('upPost')}}
+                </span>
+                @endif
     </div>
   </div>
 
@@ -30,7 +35,7 @@
   <ul>
     <li class="post-block">
       <div class="post-line">
-        <img src="{{ asset('storage/'.$post->user->images) }}"width="50"height="50" class="icon2">
+        <img src="{{ asset('storage/images/'.$post->user->images) }}"width="50"height="50" class="icon2">
 
         <div class="post-index">
             <div class="post-top">

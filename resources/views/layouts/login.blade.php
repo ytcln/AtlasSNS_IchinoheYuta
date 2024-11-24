@@ -30,7 +30,7 @@
                 <div id="accordion" class="accordion-container">
                     <p class="btn-menu">{{ Auth::user()->username}} さん</p>
                     <div class="accordion accordion-title">
-                        <img src="{{ asset('storage/'.Auth::user()->images) }}"width="50"height="50"class="accordion-image">
+                        <img src="{{ asset('storage/images/'.Auth::user()->images) }}"width="50"height="50"class="accordion-image">
                     </div>
 
                         <div class="menu-list">

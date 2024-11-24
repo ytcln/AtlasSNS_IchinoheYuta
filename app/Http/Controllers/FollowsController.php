@@ -43,8 +43,8 @@ class FollowsController extends Controller
     //フォロワーリスト表示機能
     public function followerList(){
         $followers = Auth::user()->followers()->get();
-        $following_id = Auth::user()->followers()->pluck('followed_id');
-        $posts =Post::with('user')->whereIn('user_id',$following_id)->latest()->get();
+        $followed_id = Auth::user()->followers()->pluck('following_id');
+        $posts =Post::with('user')->whereIn('user_id',$followed_id)->latest()->get();
 
         return view('follows.followerList' ,['followers' => $followers,'posts' => $posts]);
     }
@@ -122,7 +122,7 @@ public function show(User $user){
         'is_following'   => $is_following,
         'is_followed'    => $is_followed,
         'follow_count'   => $follow_count,
-        'follower_count' =>$follower_count
+        'follower_count' => $follower_count
 
     ]);
 }

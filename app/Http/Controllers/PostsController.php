@@ -40,8 +40,11 @@ class PostsController extends Controller
   {
    //$id = Auth::id();
    $request->validate([
-    'newPost' => 'required|min:1|max:150',
+        'newPost' => 'required|min:1|max:150',
+        ],[
+        'newPost.required' => '投稿は入力必須です',
    ]);
+
    $user_id =Auth::id();
    $post = $request->input('newPost');
    Post::create([
@@ -56,6 +59,11 @@ class PostsController extends Controller
   //投稿を編集する
   public function update(Request $request)
   {
+    $request->validate([
+        'upPost' => 'required|min:1|max:150',
+        ],[
+        'upPost.required' => '投稿は入力必須です',
+   ]);
     $id = $request->input('id');
     $up_post = $request->input('upPost');
     $user_id = Auth::id();

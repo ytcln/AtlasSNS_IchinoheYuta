@@ -9,41 +9,44 @@
 <p class="center2">新規ユーザー登録</p>
 
 <div class="home">
-  <p>{{ Form::label('ユーザー名') }}
+  <p>{{ Form::label('ユーザー名') }}</p>
+  <p class="top">
+    {{ Form::text('username',null,['class' => 'input']) }}
     @if ($errors->has('username'))
     <span class="login-form">
       {{$errors->first('username')}}
     </span>
     @endif
   </p>
-  <p class="top">{{ Form::text('username',null,['class' => 'input']) }}</p>
 </div>
 
 <div class="home">
-  <p>{{ Form::label('メールアドレス') }}
-    @if ($errors->has('mail'))
-    <span class="login-form">
-      {{$errors->first('mail')}}
-    </span>
-    @endif
-  </p>
-  <p class="top">{{ Form::text('mail',null,['class' => 'input']) }}</p>
+  <p>{{ Form::label('メールアドレス') }}</p>
+    <p class="top">
+      {{ Form::text('mail',null,['class' => 'input']) }}
+      @if ($errors->has('mail'))
+      <span class="login-form">
+        {{$errors->first('mail')}}
+      </span>
+      @endif
+    </p>
 </div>
 
 <div class="home">
-  <p>{{ Form::label('パスワード') }}
+  <p>{{ Form::label('パスワード') }}</p>
+    <p class="top">
+    {{ Form::password('password',null,['class' => 'input']) }}
     @if ($errors->has('password'))
     <span class="login-form">
       {{$errors->first('password')}}
     </span>
     @endif
   </p>
-  <p class="top">{{ Form::text('password',null,['class' => 'input']) }}</p>
 </div>
 
 <div class="home">
   <p>{{ Form::label('パスワード確認') }}</p>
-  <p class="top">{{ Form::text('password_confirmation',null,['class' => 'input']) }}</p>
+  <p class="top">{{ Form::password('password_confirmation',null,['class' => 'input']) }}</p>
 </div>
 
 <p class="right"><input type="submit" value=新規登録 class="red"></p>

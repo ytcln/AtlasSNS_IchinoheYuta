@@ -36,7 +36,7 @@
           <!--登録者アイコン -->
           <div class="search">
             <li class="register_icon">
-              <img src="{{'/images/'. $user->images}}" alt="登録者アイコン"width="50"height="50"class="search-icon">
+              <img src="{{'storage/images/'. $user->images}}" alt="登録者アイコン"width="50"height="50"class="search-icon">
             </li>
             <!-- 登録者名 -->
             <li class="center_user_content">{{ $user->username }}</li>

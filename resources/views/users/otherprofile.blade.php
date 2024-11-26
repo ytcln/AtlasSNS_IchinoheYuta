@@ -4,7 +4,11 @@
 
 <!-- プロフィール編集画面 -->
 
-<img src="{{ asset('storage/images/'.$users->images) }}" class="icon-image"width="50"height="50">
+@if($users->images === 'icon1.png')
+  <img src="{{ asset('images/icon1.png') }}"width="50"height="50" class="icon-image">
+  @else
+  <img src="{{ asset('storage/images/'.$users->images) }}" class="icon-image"width="50"height="50">
+@endif
 
 <div>
   <div class="other-line">
@@ -34,7 +38,11 @@
 
 <li class="follow-post">
       <div class="post-content">
-          <img src="{{ asset('storage/images/'.$users->images) }}" class="icon-image1"width="50"height="50">
+        @if($users->images === 'icon1.png')
+        <img src="{{ asset('images/icon1.png') }}"width="50"height="50" class="icon-image1">
+        @else
+        <img src="{{ asset('storage/images/'.$users->images) }}" class="icon-image1"width="50"height="50">
+        @endif
 
           <div class="follow-lines">
             <div class="follow-content">

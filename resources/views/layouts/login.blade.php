@@ -30,7 +30,11 @@
                 <div id="accordion" class="accordion-container">
                     <p class="btn-menu">{{ Auth::user()->username}} さん</p>
                     <div class="accordion accordion-title">
+                        @if(Auth::user()->images === 'icon1.png')
+                        <img src="{{ asset('images/icon1.png') }}"width="50"height="50"class="accordion-image">
+                        @else
                         <img src="{{ asset('storage/images/'.Auth::user()->images) }}"width="50"height="50"class="accordion-image">
+                        @endif
                     </div>
 
                         <div class="menu-list">

@@ -36,8 +36,13 @@
           <!--登録者アイコン -->
           <div class="search">
             <li class="register_icon">
-              <img src="{{'storage/images/'. $user->images}}" alt="登録者アイコン"width="50"height="50"class="search-icon">
+              @if($user->images === 'icon1.png')
+                <img src="{{ asset('images/icon1.png') }}"width="50"height="50" class="search-icon">
+                @else
+                <img src="{{'storage/images/'. $user->images}}" alt="登録者アイコン"width="50"height="50"class="search-icon">
+                @endif
             </li>
+
             <!-- 登録者名 -->
             <li class="center_user_content">{{ $user->username }}</li>
             <!-- フォロー、フォロー解除ボタン -->

@@ -9,8 +9,12 @@
     <form action="/profile/update"enctype="multipart/form-data"method="POST">
           @csrf
       <div class="update-line">
-        <img src="{{ asset('storage/images/'.Auth::user()->images) }}"
-        class="update-icon" width="50"height="50">
+        @if(Auth::user()->images === 'icon1.png')
+          <img src="{{ asset('images/icon1.png') }}"width="50"height="50" class="update-icon">
+          @else
+          <img src="{{ asset('storage/images/'.Auth::user()->images) }}"
+          class="update-icon" width="50"height="50">
+          @endif
 
         <div class="update-form">
             <input type="hidden" name="id" value="{{Auth::user()->id}}">

@@ -6,7 +6,12 @@
 
   <div class="container1">
     <p class="page-header">
-      <img src="{{ asset('storage/images/'.$user->images) }}"width="50"height="50" class="icon1">
+      @if($user->images === 'icon1.png')
+      <img src="{{ asset('images/icon1.png') }}"width="50"height="50" class="icon1">
+      @else
+      <img src="{{ asset('storage/images/'.$user->images) }}
+      "width="50"height="50" class="icon1">
+      @endif
     </p>
     {!! Form::open(['url' => 'post/create','class' =>'form-post']) !!}
 
@@ -35,7 +40,11 @@
   <ul>
     <li class="post-block">
       <div class="post-line">
-        <img src="{{ asset('storage/images/'.$post->user->images) }}"width="50"height="50" class="icon2">
+        @if($post->user->images === 'icon1.png')
+        <img src="{{ asset('images/icon1.png') }}" width="50"height="50">
+        @else
+        <img src="{{ asset('storage/images/'.$post->user->images) }}"width="50"height="50">
+        @endif
 
         <div class="post-index">
             <div class="post-top">

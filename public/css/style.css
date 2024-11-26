@@ -104,6 +104,10 @@ li {
     background-color: navy;
 }
 
+.menu-top a:hover {
+    color: #fff;
+}
+
 .accordion-container {
     display: flex;
     margin-right: 20px;
@@ -125,6 +129,7 @@ li {
 .menu-hover {
     color: #808080;
 }
+
 
 /* main content */
 #head {
